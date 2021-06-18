@@ -1,0 +1,44 @@
+.miniCarrito-container {
+  position: relative;
+}
+.miniCarrito-container .badge-minicarrito {
+  position: relative;
+}
+.miniCarrito-container .minicarrito-qty {
+  background-color: var(--primerColor);
+  font-family: SofiaProBold;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  position: absolute;
+  top: -3px;
+  right: -7px;
+}
+.miniCarrito-items {
+  display: none;
+  position: absolute;
+  width: 300px;
+  right: -2px;
+  background-color: #fff;
+  box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
+    0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 5px;
+  padding: 10px;
+}
+.miniCarrito-container:hover .miniCarrito-items {
+  display: block;
+}
+.miniCarrito-items img {
+  width: 45px;
+  height: 45px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+.miniCarrito-items .item {
+  padding: 5px;
+}

@@ -1,38 +1,83 @@
-.App {
-  text-align: center;
+.app-container {
+  padding-top: 72px;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.loading-container {
+  display: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.loading-container.active {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  z-index: 3000;
 }
-
-.App-link {
-  color: #61dafb;
+.b-loading {
+  position: fixed;
+  top: 5px;
+  background-color: #ffffff;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 2px 6px 2px rgba(60, 64, 67, 0.149);
+  padding: 3px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.b-loading img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.createItems-container a {
+  /* font-family: SofiaProBold; */
+  font-size: 12px;
+}
+.createItems-container input {
+  /* font-family: SofiaProBold; */
+  font-size: 12px;
+}
+.createItems-container label {
+  /* font-family: SofiaProBold; */
+  font-size: 12px;
+}
+.createItems-container .makeStyles-paper-1 {
+  margin-top: 30px;
+}
+.createItems-container .MuiButton-containedPrimary {
+  background-color: var(--primerColor);
+}
+.createItems-container .MuiButton-containedPrimary:hover {
+  background-color: var(--tercerColor);
+}
+.MuiAvatar-root.MuiAvatar-circle.makeStyles-avatar-2.MuiAvatar-colorDefault {
+  background-color: var(--quintoColor);
+}
+.b-btn-createItem {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.b-btn-createItem a {
+  text-decoration: none;
+  color: var(--tercerColor);
+}
+.b-btn-createItem a:hover {
+  text-decoration: none;
+  color: var(--tercerColor);
+}
+.b-btn-createItem button {
+  text-decoration: none;
+  background-color: var(--tercerColor);
+  color: #fff;
+}
+.b-btn-createItem button:hover {
+  color: #fff;
+}
+.app-container .MuiContainer-root.MuiContainer-maxWidthXs {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 2px 6px 2px rgba(60, 64, 67, 0.149);
 }

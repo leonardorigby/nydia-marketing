@@ -1,0 +1,24 @@
+.login-container a {
+  /* font-family: SofiaProBold; */
+  font-size: 12px;
+}
+.login-container input {
+  /* font-family: SofiaProBold; */
+  font-size: 12px;
+}
+.login-container label {
+  /* font-family: SofiaProBold; */
+  font-size: 12px;
+}
+.login-container .makeStyles-paper-1 {
+  margin-top: 30px;
+}
+.login-container .MuiButton-containedPrimary {
+  background-color: var(--primerColor);
+}
+.login-container .MuiButton-containedPrimary:hover {
+  background-color: var(--tercerColor);
+}
+.MuiAvatar-root.MuiAvatar-circle.makeStyles-avatar-2.MuiAvatar-colorDefault {
+  background-color: var(--quintoColor);
+}

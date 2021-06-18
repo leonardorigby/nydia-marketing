@@ -1,0 +1,18 @@
+th.MuiTableCell-root {
+  padding: 5px;
+  /* font-family: SofiaProBold; */
+  font-size: 11px;
+}
+td.MuiTableCell-root {
+  padding: 5px;
+  /* font-family: SofiaProBold; */
+  font-size: 10px;
+}
+td.MuiTableCell-root img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+label.MuiFormControlLabel-root {
+  display: none;
+}

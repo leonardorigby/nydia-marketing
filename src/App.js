@@ -1,24 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
+import Admin from './admin/';
+import Store from './store/';
+import Login from './store/Login';
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { BrowserRouter, Redirect} from "react-router-dom";
+import RouteGuard from './route-guard';
 
-function App() {
+import LoginAdmin from './pages/LoginAdmin';
+import LoginProveedor from './pages/LoginProveedor';
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    <div className="app-container">
+        <BrowserRouter>
+        {
+          window.location.pathname == '/' && <Redirect to="/store/productos/" />
+        }
+
+          <Route  path="/store/"><Store /></Route>
+
+          <RouteGuard path="/admin/" component={Admin}  />
+
+          <Route  path="/admin-login"><LoginAdmin /></Route>
+
+          <Route  path="/proveedor-login"><LoginProveedor /></Route>
+          
+      </BrowserRouter>
     </div>
   );
 }

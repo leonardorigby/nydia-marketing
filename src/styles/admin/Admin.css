@@ -1,0 +1,8 @@
+.admin-container {
+  padding: 10px;
+  padding-left: 72px;
+  transition: all 0.5s;
+}
+.admin-container.open {
+  padding-left: 245px;
+}
