@@ -38,12 +38,18 @@ const ProductoShelf = (props) => {
           title="Contemplative Reptile"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography gutterBottom variant="h5" component="h2" align="center">
             {props.producto.Nombre}
           </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-          $ {props.producto.Precio}.00
+          <Typography gutterBottom variant="h5" component="h2">
+            
+              <span id="type">Toneladas</span>
           </Typography>
+          <Typography variant="body2"  component="p">
+          <s id="priceOld">$ {props.producto.Precio} MXN</s>
+          <strong>$ {props.producto.Precio} MXN</strong>
+          </Typography>
+          
         </CardContent>
       </CardActionArea>
       <CardActions>
@@ -52,6 +58,8 @@ const ProductoShelf = (props) => {
         </Button> */}
         {/* <Button size="small" color="primary"> */}
             <button size="small" color="primary" className="btn" onClick={() => props.agregarProductoAlCarrito(props.producto)}>Agregar al carrito</button>
+            <div><input type="number" size="small" className=" form-control" placeholder="1" /></div>
+
         {/* </Button> */}
       </CardActions>
     </Card>

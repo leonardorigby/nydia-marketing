@@ -16,6 +16,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import Loading from '../components/Loading';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
+
 
 import '../styles/admin/Login.css';
 
@@ -156,6 +158,10 @@ export default function Login() {
           </Button>
         </form>
       </div>
+            <NavLink to="/register">
+            {"¿No tienes cuenta? Regístrala ahora."}
+                </NavLink>
+            
       <Box mt={8}>
         {/* <Copyright /> */}
       </Box>

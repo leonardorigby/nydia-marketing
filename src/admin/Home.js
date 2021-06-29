@@ -1,9 +1,10 @@
 import React, { useState} from 'react';
+import Buscador from '../components/Buscador';
 
 const Home = () => {
     return (
         <div className="homeAdmin-container">
-            <h1>Home</h1>
+            <Buscador></Buscador>
             
         </div>
     );

@@ -4,6 +4,7 @@ import ProductoShelf from '../components/ProductoShelf';
 import Login from './Login';
 import Header from './Header';
 import Productos from './Productos';
+import Buscador from '../components/Buscador';
 
 
 
@@ -48,10 +49,11 @@ const Store = () => {
         <div className="store-container">
             <Header carrito={carrito}/>
             
-          <Redirect to="/store/productos/" />
+          
 
           <Route  path="/store/productos/"><Productos agregarProductoAlCarrito={agregarProductoAlCarrito}/></Route>
           <Route  path="/store/login/"><Login /></Route>
+          <Route  path="/store/search/"><Buscador /></Route>
         </div>
     );
 }

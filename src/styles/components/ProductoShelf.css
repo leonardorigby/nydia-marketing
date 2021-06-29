@@ -13,3 +13,11 @@
 .productoShhelf-container .jss4 {
   height: 259px;
 }
+#type{
+ /* margin-left: 75%;
+*/
+}
+#priceOld{
+  color:red;
+  margin-right: 8%;
+}

@@ -13,20 +13,21 @@ const Header = (props) => {
                 <NavLink to="/store">
                     <img src="/images/under-construction.svg" alt="logo"/>      
                 </NavLink>
-                <div className="b-menu-link desktop pointer">
+                
+            </div>
+            <div className="b-menu-link desktop pointer">
                     <i className="fas fa-bars pointer"></i>
                     <span>Categorias</span>
                 </div>
-            </div>
-            <div className="b-search">
+            <div className="b-search" >
                 <div className="b-input">
                 <input className="form-control" placeholder="Buscar en toda la tienda..."/>
                 <i className="fas fa-search"></i>
                 </div>  
             </div>
             <div className="b-account-minicart">
-                <NavLink to="/store/login">
-                    <span className="user-name">Leonardo Rigby</span>
+                <NavLink to="/admin-login">
+                    <span className="user-name">login</span>
                     <i className="fas fa-user-circle"></i>
                     {/* <div className="mini-perfil">
                         <i className="fas fa-sign-out-alt"></i>

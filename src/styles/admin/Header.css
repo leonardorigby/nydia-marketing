@@ -34,6 +34,15 @@
   border-radius: 5px;
   color: #000;
 }
+.desktop {
+  margin-left: 3%;
+}
+.desktop span{
+  margin-left: 10%;
+}
+.b-search {
+  margin-left: 3%;
+}
 .headerAdmin-container .b-bar-logo .menu-icon {
   font-size: 18px;
   margin-right: 15px;

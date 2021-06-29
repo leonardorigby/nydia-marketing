@@ -65,15 +65,16 @@ const theme = createMuiTheme({
   },
 });
 
-export default function Login() {
+const Register= () => {
+  
+
   const classes = useStyles();
 
-  const userLogin = (event) => {
+  const userRegiser = (event) => {
     event.preventDefault();
     alert("login success ");
     console.log(event.preventDefault())
   }
-
   return (
     <div className="login-container">
       <ThemeProvider theme={theme}>
@@ -84,38 +85,100 @@ export default function Login() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Iniciar Sesión
+          Registro
         </Typography>
-        <form className={classes.form}  onSubmit={userLogin}>
+        <form className={classes.form}  onSubmit={userRegiser}>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Correo Electronico"
-            name="email"
-            autoComplete="email"
+            id="nameEmpresa"
+            label="Nombre de la Empresa"
+            name="nameEmpresa"
+            autoComplete="Nombre de la Empresa"
+            autoFocus
+          />
+            <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            id="rfc"
+            label="RFC"
+            name="rfc"
+            autoComplete="RFC"
             autoFocus
           />
           <TextField
             variant="outlined"
             margin="normal"
             required
+            id="telefono"
+            label="Telefono"
+            name="telefono"
+            autoComplete="Telefono"
+            autoFocus
+          />
+        <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            id="puesto"
+            label="Cargo en la Empresa"
+            name="puesto"
+            autoComplete="Cargo en la Empresa"
+            autoFocus
+          />
+           <TextField
+            variant="outlined"
+            margin="normal"
+            required
             fullWidth
+            id="ubicacion"
+            label="Ubicacion"
+            name="ubicacion"
+            autoComplete="Ubicacion"
+            autoFocus
+          />
+          <TextField
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          id="email"
+          label="Correo Electronico"
+          name="email"
+          autoComplete="email"
+          autoFocus
+        />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            id="sector"
+            label="Sector"
+            name="sector"
+            autoComplete="Sector"
+            autoFocus
+          />
+           
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            
             name="password"
             label="Contraseña"
             type="password"
             id="password"
             autoComplete="current-password"
           />
+          
           {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
           /> */}
-                        <Link href="#" variant="body2">
-                ¿Olvidaste tu contraseña?
-              </Link>
+                       
           <Button
             type="submit"
             fullWidth
@@ -123,18 +186,13 @@ export default function Login() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Registrame
           </Button>
           <Grid container>
             <Grid item xs>
 
             </Grid>
-            <Grid item>
-            <NavLink to="/store/register">
-            {"¿No tienes cuenta? Regístrala ahora."}
-                </NavLink>
-                
-            </Grid>
+           
           </Grid>
         </form>
       </div>
@@ -145,4 +203,7 @@ export default function Login() {
     </ThemeProvider>
     </div>
   );
+
 }
+
+export default Register;
