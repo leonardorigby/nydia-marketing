@@ -5,15 +5,16 @@ import TableItems from '../components/TableItems';
 import axios from 'axios';
 import Loading from '../components/Loading';
 
-const Usuarios = (props) => {
+const Productos = (props) => {
 
-    const [usuario, setUsuario ] = useState(
+    const [proveedor, setProveedor] = useState(JSON.parse(localStorage.getItem('proveedor')));
+
+    const [producto, setProducto ] = useState(
         {   
-            'name': 'Usuario',
+            'name': 'Producto',
             'icon': 'user-circle',
-            'tabla': 'Usuarios',
-            'redirect': "/admin/usuarios",
-            'endpoint': 'https://webdevelopersgdl.com/comercializadora-material/v1/api/usuario/',
+            'tabla': 'productos',
+            'endpoint': 'https://webdevelopersgdl.com/comercializadora-material/v1/api/producto/',
             'fields': [
                     
                 {   
@@ -21,11 +22,11 @@ const Usuarios = (props) => {
                     'name': "nombre",
                     'type': 'text',
                     'xs': 12,
-                    'sm': 6
+                    'sm': 12
                 },   
                 {   
-                    'title': "Apellidos",
-                    'name': "apellidos",
+                    'title': "Material",
+                    'name': "materialId",
                     'type': 'text',
                     'xs': 12,
                     'sm': 6
@@ -35,26 +36,33 @@ const Usuarios = (props) => {
                     'name': "urlImagen",
                     'type': 'file',
                     'xs': 12,
-                    'sm': 12
+                    'sm': 6
                 },
                 {   
-                    'title': "Correo Electronico",
-                    'name': "correoElectronico",
+                    'title': "Datos Adicionales",
+                    'name': "datosAdicionales",
                     'type': 'text',
                     'xs': 12,
                     'sm': 12
                 },
                 {   
-                    'title': "Perfil",
-                    'name': "perfilId",
-                    'type': 'text',
+                    'title': "Categoria",
+                    'name': "categoriaId",
+                    'type': 'number',
                     'xs': 12,
                     'sm': 6
                 },
                 {   
-                    'title': "Contraseña",
-                    'name': "password",
-                    'type': 'password',
+                    'title': "Stock",
+                    'name': "stock",
+                    'type': 'number',
+                    'xs': 12,
+                    'sm': 6
+                },
+                {   
+                    'title': "Precio",
+                    'name': "precio",
+                    'type': 'number',
                     'xs': 12,
                     'sm': 6
                 }
@@ -62,22 +70,22 @@ const Usuarios = (props) => {
         }
     );
 
-    const [usuarios, setUsuarios] = useState([]);
+    const [productos, setProductos] = useState([]);
     const [headCells, setHeadCells] = useState([]);
     const [loading, setLoading] = useState(false);
     
 
     useEffect(() => {
-        getUsuarios();
+        getProductos();
         
     }, []);
 
-    const getUsuarios = () => {
-        console.log(props.admin.jwt)
+    const getProductos = () => {
         setLoading(true);
-        const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/usuario/';
+        const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/proveedor/' + proveedor.id + '/productos/';
 
-        axios.get(endpoint, { headers: {"Authorization" : `Bearer ${props.admin.jwt}`} }).then((response) =>{
+        axios.post(endpoint, { headers: {"Authorization" : `Bearer ${props.proveedor.jwt}`} }).then((response) =>{
+            console.log(response)
             setLoading(false);
             let responseData = response.data.data;
             if(responseData.length > 0 ) {
@@ -114,7 +122,7 @@ const Usuarios = (props) => {
             setHeadCells(
                 objectKeys
             );
-            setUsuarios(
+            setProductos(
                 responseData
             );
             console.log(responseData);
@@ -126,18 +134,19 @@ const Usuarios = (props) => {
     }
 
     return (
-        <div className="usuarios-container">
+        <div className="roductos-container">
+            <h1>Mis productos</h1>
             <Loading loading={loading}/>
 
 
             <div className="b-btn-createItem">
-                <NavLink to="/admin/registrar" onClick={()=> props.nuevoRegistro(usuario)}>
-                    <button className="btn btn-addUsuario" >Agregar Usuario</button>
+                <NavLink to="/proveedor/registrar" onClick={()=> props.nuevoRegistro(producto)}>
+                    <button className="btn btn-addProducto" >Agregar Producto</button>
                 </NavLink>
             </div>
-            <TableItems componentName="Usuarios" headCells={headCells} data={usuarios}/>
+            <TableItems componentName="Productos" headCells={headCells} data={productos}/>
 
-            {/* <Route exact path="/admin/usuarios/hola/"><CreateItems /></Route> */}
+            {/* <Route exact path="/proveedor/usuarios/hola/"><CreateItems /></Route> */}
             {/* <Route component={NoMatch}/> */}
 
             
@@ -145,4 +154,4 @@ const Usuarios = (props) => {
     );
 }
 
-export default Usuarios;
+export default Productos;

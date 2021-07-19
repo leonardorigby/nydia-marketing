@@ -3,12 +3,12 @@ import { Route, Redirect } from "react-router-dom";
 
 const RouteGuard = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
-        
-        localStorage.getItem('admin') != null && localStorage.getItem('admin') != "undefined" && localStorage.getItem('admin') != undefined
+
+        localStorage.getItem('proveedor') != null && localStorage.getItem('proveedor') != "undefined" && localStorage.getItem('proveedor') != undefined
 
             ? <Component {...props} />
 
-            : <Redirect to='/login/admin-login' />
+            : <Redirect to='/login/proveedor-login' />
 
     )} />
 )

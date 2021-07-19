@@ -1,0 +1,64 @@
+.itemShhelf-container .makeStyles-media-22 {
+  height: 259px;
+}
+.itemShhelf-container .makeStyles-media-28 {
+  height: 259px;
+}
+.itemShhelf-container .makeStyles-media-4 {
+  height: 259px;
+}
+.itemShhelf-container .MuiCardMedia-root {
+  height: 259px;
+}
+.itemShhelf-container .jss4 {
+  height: 259px;
+}
+#type {
+  /* margin-left: 75%;
+  */
+}
+#priceOld {
+  color: red;
+  margin-right: 8%;
+}
+.btn {
+  width: 100%;
+}
+.itemShhelf-container .product-link {
+  width: 100%;
+  text-decoration: none;
+  color: #fff !important;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.itemShhelf-container .product-link:hover {
+  width: 100%;
+  text-decoration: none;
+  color: #fff !important;
+}
+.itemShhelf-container .add-cartBtn {
+  text-decoration: none;
+  all: unset;
+  background-color: var(--primerColor);
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  border-radius: 3px;
+  background-image: linear-gradient(
+    -225deg,
+    #ff690f 0%,
+    #ee4719 100%
+  ) !important;
+  color: #fff !important;
+  cursor: pointer;
+  text-align: center;
+  width: 100%;
+}
+.itemShhelf-container .price {
+  font-family: SofiaProBold;
+  font-size: 16px;
+}

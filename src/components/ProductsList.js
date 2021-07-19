@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink } from "react-router-dom";
 import { makeStyles } from '@material-ui/core/styles';
-import TableItems from '../components/TableItems';
-import axios from 'axios';
-import Loading from '../components/Loading';
-import ProductoShelf from '../components/ProductoShelf';
+import ProductoShelf from './ItemShelf';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -23,39 +20,18 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-const Productos = (props) => {
+const ProductsList = (props) => {
 
-    const [productos, setProductos] = useState([]);
-    const [loading, setLoading] = useState(false);
+    // const [productos, setProductos] = useState(props.products);
+    // const [loading, setLoading] = useState(false);
 
     const classes = useStyles();
 
-    useEffect(() => {
-        
-      searchProductos();
-    }, []);
+    // useEffect(() => {
+    //     // getProductos();
+    //     console.log(productos)
+    // }, [productos]);
 
-    const searchProductos = () => {
-      const searchWord = props.match.params.searchWord;
-      console.log(searchWord);
-      const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/search/';
-      const data =  {
-          "searchWord": searchWord
-      };
-        console.log("ahi")
-        axios.post(endpoint,JSON.stringify(data)).then((response) =>{
-          console.log(response)
-          setLoading(false);
-          let responseData = response.data.data;
-          console.log(responseData)
-          if(responseData.length > 0 ) {
-              // setProductos(responseData)
-          }
-      }).catch((error) => {
-          console.log(error);
-          setLoading(false);
-      })
-  }
     // const getProductos = () => {
     //     setLoading(true);
     //     const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/producto/';
@@ -75,7 +51,7 @@ const Productos = (props) => {
     //     })
     // }
 
-    const productosLista = productos.map((producto, index) => 
+    const productosLista = props.products.map((producto, index) => 
         <Grid item xs={12} sm={6} md={3} key={index}>
             <ProductoShelf agregarProductoAlCarrito={props.agregarProductoAlCarrito} producto={producto}/>
         </Grid>
@@ -83,7 +59,7 @@ const Productos = (props) => {
 
     return (
         <div className="productos-container">
-            <Loading loading={loading}/>
+            {/* <Loading loading={loading}/> */}
             <Container maxWidth="lg">
         <div className={classes.root}>
       <Grid container spacing={3}>
@@ -109,4 +85,4 @@ const Productos = (props) => {
     );
 }
 
-export default Productos;
+export default ProductsList;

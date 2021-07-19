@@ -12,6 +12,7 @@ const Productos = (props) => {
             'name': 'Producto',
             'icon': 'user-circle',
             'tabla': 'productos',
+            'redirect': "/admin/productos",
             'endpoint': 'https://webdevelopersgdl.com/comercializadora-material/v1/api/producto/',
             'fields': [
                     

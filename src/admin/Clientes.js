@@ -5,48 +5,47 @@ import TableItems from '../components/TableItems';
 import axios from 'axios';
 import Loading from '../components/Loading';
 
-const Usuarios = (props) => {
-
-    const [usuario, setUsuario ] = useState(
+const Clientes = (props) => {
+    const [cliente, setCliente ] = useState(
         {   
-            'name': 'Usuario',
+            'name': 'Proveedor',
             'icon': 'user-circle',
-            'tabla': 'Usuarios',
-            'redirect': "/admin/usuarios",
-            'endpoint': 'https://webdevelopersgdl.com/comercializadora-material/v1/api/usuario/',
+            'tabla': 'clientes',
+            'redirect': "/admin/clientes",
+            'endpoint': 'https://webdevelopersgdl.com/comercializadora-material/v1/api/cliente/',
             'fields': [
                     
                 {   
-                    'title': "Nombre",
-                    'name': "nombre",
+                    'title': "Empresa razon Social",
+                    'name': "empresaRazonSocial",
                     'type': 'text',
                     'xs': 12,
-                    'sm': 6
+                    'sm': 12
                 },   
                 {   
-                    'title': "Apellidos",
-                    'name': "apellidos",
+                    'title': "Correo Empresarial",
+                    'name': "correoEmpresarial",
                     'type': 'text',
                     'xs': 12,
-                    'sm': 6
+                    'sm': 12
                 },
                 {   
                     'title': "Imagen",
                     'name': "urlImagen",
                     'type': 'file',
                     'xs': 12,
-                    'sm': 12
+                    'sm': 6
                 },
                 {   
-                    'title': "Correo Electronico",
-                    'name': "correoElectronico",
+                    'title': "Cargo Empresarial",
+                    'name': "cargoEmpresarial",
                     'type': 'text',
                     'xs': 12,
-                    'sm': 12
+                    'sm': 6
                 },
                 {   
-                    'title': "Perfil",
-                    'name': "perfilId",
+                    'title': "Telefono",
+                    'name': "telefono",
                     'type': 'text',
                     'xs': 12,
                     'sm': 6
@@ -61,21 +60,18 @@ const Usuarios = (props) => {
             ]
         }
     );
-
-    const [usuarios, setUsuarios] = useState([]);
+    const [clientes, setclientes] = useState([]);
     const [headCells, setHeadCells] = useState([]);
     const [loading, setLoading] = useState(false);
-    
 
     useEffect(() => {
-        getUsuarios();
+        getclientes();
         
     }, []);
 
-    const getUsuarios = () => {
-        console.log(props.admin.jwt)
+    const getclientes = () => {
         setLoading(true);
-        const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/usuario/';
+        const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/cliente/';
 
         axios.get(endpoint, { headers: {"Authorization" : `Bearer ${props.admin.jwt}`} }).then((response) =>{
             setLoading(false);
@@ -114,11 +110,17 @@ const Usuarios = (props) => {
             setHeadCells(
                 objectKeys
             );
-            setUsuarios(
+            setclientes(
                 responseData
             );
             console.log(responseData);
         }
+            //     console.log(response.data.data);
+            //     setclientes(response.data.data);
+            //     setKeys(
+            //         response
+            //     );
+            // }
         }).catch((error) => {
             console.log(error);
             setLoading(false);
@@ -126,23 +128,18 @@ const Usuarios = (props) => {
     }
 
     return (
-        <div className="usuarios-container">
-            <Loading loading={loading}/>
-
+        <div className="clientes-container">
+            <Loading loading={loading} />
 
             <div className="b-btn-createItem">
-                <NavLink to="/admin/registrar" onClick={()=> props.nuevoRegistro(usuario)}>
-                    <button className="btn btn-addUsuario" >Agregar Usuario</button>
+                <NavLink to="/admin/registrar" onClick={()=> props.nuevoRegistro(cliente)}>
+                    <button className="btn btn-addCliente">Agregar Cliente</button>
                 </NavLink>
             </div>
-            <TableItems componentName="Usuarios" headCells={headCells} data={usuarios}/>
 
-            {/* <Route exact path="/admin/usuarios/hola/"><CreateItems /></Route> */}
-            {/* <Route component={NoMatch}/> */}
-
-            
+            <TableItems componentName="clientes" headCells={headCells} data={clientes}/>
         </div>
     );
 }
 
-export default Usuarios;
+export default Clientes;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -15,6 +15,8 @@ import Container from '@material-ui/core/Container';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+
 
 
 import '../styles/store/Login.css';
@@ -68,10 +70,38 @@ const theme = createMuiTheme({
 export default function Login() {
   const classes = useStyles();
 
-  const userLogin = (event) => {
+  const [loading, setLoading] = useState(false);
+
+
+  const usuarioLogin = (event) => {
     event.preventDefault();
-    alert("login success ");
-    console.log(event.preventDefault())
+    setLoading(true);
+
+
+    const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/cliente/login';
+
+    const credenciales = {
+      'correoEmpresarial': event.target.correoElectronico.value,
+      'password': event.target.password.value
+    };
+
+    axios.post(endpoint, JSON.stringify(credenciales)).then((response) => {
+      console.log(response);
+      setLoading(false);
+
+      if(response.status == 200 && response.data.message === 'success') {
+        localStorage.setItem('usuario', JSON.stringify(response.data.data));
+        window.location.href = "/store/productos";
+      }else {
+        alert("Datos de sesión invalidos!!!")
+      }
+
+    }).catch((error)=> {
+      setLoading(false);
+      alert("Datos de sesión invalidos!!!")
+      console.log(error.status);
+    })
+
   }
 
   return (
@@ -86,7 +116,7 @@ export default function Login() {
         <Typography component="h1" variant="h5">
           Iniciar Sesión
         </Typography>
-        <form className={classes.form}  onSubmit={userLogin}>
+        <form className={classes.form}  onSubmit={usuarioLogin}>
           <TextField
             variant="outlined"
             margin="normal"
@@ -94,7 +124,7 @@ export default function Login() {
             fullWidth
             id="email"
             label="Correo Electronico"
-            name="email"
+            name="correoElectronico"
             autoComplete="email"
             autoFocus
           />
@@ -130,7 +160,7 @@ export default function Login() {
 
             </Grid>
             <Grid item>
-            <NavLink to="/store/register">
+            <NavLink to="/store/registrar">
             {"¿No tienes cuenta? Regístrala ahora."}
                 </NavLink>
                 

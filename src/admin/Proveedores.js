@@ -11,6 +11,7 @@ const Proveedores = (props) => {
             'name': 'Proveedor',
             'icon': 'user-circle',
             'tabla': 'proveedores',
+            'redirect': "/admin/proveedores",
             'endpoint': 'https://webdevelopersgdl.com/comercializadora-material/v1/api/proveedor/',
             'fields': [
                     

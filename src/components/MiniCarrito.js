@@ -11,8 +11,8 @@ const MiniCarrito = (props) => {
     if(props.carrito != null && props.carrito != undefined && props.carrito != 'undefined' ){
         items = props.carrito.map((item, index) => 
         <div className="item">
-            <img src={item.Imagen} />
-            <span>{item.Nombre}</span>
+            <img src={item.urlImagen} />
+            <span>{item.nombre}</span>
         </div>
 
     );

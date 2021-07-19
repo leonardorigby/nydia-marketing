@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CreateItems = (props) => {
 
+    const [proveedor, setProveedor] = useState(JSON.parse(localStorage.getItem('proveedor')));
     const [loading, setLoading] = useState(false);
 
     const [ imagenAvatar, setImagenAvatar ] = useState(null);
@@ -153,36 +154,75 @@ const CreateItems = (props) => {
 
     }
     const registrarItemConImagen = (event,fieldImage, data) => {
-        console.log(data);
-        setLoading(true);
-        let folder = props.data.name;
-            let imagen = event.target[fieldImage].files[0];
-
-            let formData = new FormData();
-            const endpointImage = "https://webdevelopersgdl.com/comercializadora-material/v1/api/save-image/";
-            formData.append("folder", folder);
-            formData.append("image", imagen);
-            axios.post(endpointImage, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }).then(function(response){
-                console.log(response);
-                if(response.data.success == true ){
-                    data[fieldImage] = response.data.path;
-                    registrarItem(data);
-                }else {
-                  alert("Error al guardar imgen folder no existe!");
-                }
-            }).catch(function(error){
-              setLoading(false);
-                console.log("error saving image => " + error)
-            });
+      if(props.data.tabla == "productos") {
+        if(proveedor != null ) {
+          console.log(data);
+          setLoading(true);
+          let folder = props.data.name;
+              let imagen = event.target[fieldImage].files[0];
+  
+              let formData = new FormData();
+              const endpointImage = "https://webdevelopersgdl.com/comercializadora-material/v1/api/save-image/";
+              formData.append("folder", folder);
+              formData.append("image", imagen);
+              axios.post(endpointImage, formData, {
+                  headers: {
+                      'Content-Type': 'multipart/form-data'
+                  }
+              }).then(function(response){
+                  console.log(response);
+                  setLoading(false);
+                  if(response.data.success == true ){
+                      data[fieldImage] = response.data.path;
+                      registrarItem(data);
+                  }else {
+  
+                    alert("Error al guardar imgen folder no existe!");
+                  }
+              }).catch(function(error){
+                setLoading(false);
+                  console.log("error saving image => " + error)
+              });
+            } else {
+              alert("Por favor de inciar sesión como proveedor!");
+            }
+      }else {
+          console.log(data);
+          setLoading(true);
+          let folder = props.data.name;
+              let imagen = event.target[fieldImage].files[0];
+  
+              let formData = new FormData();
+              const endpointImage = "https://webdevelopersgdl.com/comercializadora-material/v1/api/save-image/";
+              formData.append("folder", folder);
+              formData.append("image", imagen);
+              axios.post(endpointImage, formData, {
+                  headers: {
+                      'Content-Type': 'multipart/form-data'
+                  }
+              }).then(function(response){
+                  console.log(response);
+                  setLoading(false);
+                  if(response.data.success == true ){
+                      data[fieldImage] = response.data.path;
+                      registrarItem(data);
+                  }else {
+  
+                    alert("Error al guardar imgen folder no existe!");
+                  }
+              }).catch(function(error){
+                setLoading(false);
+                  console.log("error saving image => " + error)
+              });
+      }
     }
 
     const registrarItem = (data) => {
       // console.log(data)
       //   data['precio'] = parseFloat(data.precio);
+      if(props.data.tabla == 'productos') {
+        data['proveedorId'] = proveedor.id;
+      }
       console.log(data);
         const endpoint = props.data.endpoint;
         axios.post(endpoint, JSON.stringify(data)).then((response) => {
@@ -222,7 +262,7 @@ const CreateItems = (props) => {
                   <Loading loading={loading}/>
 
         {
-            redirect && <Redirect to={"/admin/" + (props.data.tabla)} />
+            redirect && <Redirect to={props.data.redirect} />
         }
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -233,7 +273,7 @@ const CreateItems = (props) => {
             :<Avatar className={classes.avatar} src={imagenAvatar} ></Avatar>
           }
         <Typography component="h1" variant="h5">
-          Registrar {props.data.name}
+          {props.data.name}
         </Typography>
         <form className={classes.form} onSubmit={checkItemData}>
           <Grid container spacing={2}>

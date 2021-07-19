@@ -1,8 +1,13 @@
 .createItems-container .MuiContainer-root.MuiContainer-maxWidthXs {
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
-    0 2px 6px 2px rgba(60, 64, 67, 0.149);
+  /* box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302),
+    0 2px 6px 2px rgba(60, 64, 67, 0.149); */
+  box-shadow: var(
+    --p-card-shadow,
+    0 0 0 1px rgba(63, 63, 68, 0.05),
+    0 1px 3px 0 rgba(63, 63, 68, 0.15)
+  );
 }
 @media (min-width: 0px) {
   .MuiContainer-maxWidthXs {

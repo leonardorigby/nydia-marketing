@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,19 +12,28 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import Loading from '../components/Loading';
+import Header from '../components/Header';
+import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+
+import '../styles/proveedor/Login.css';
+
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://material-ui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -46,11 +55,62 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function LoginProveedor() {
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: '#444444',
+    },
+    secondary: {
+      // This is green.A700 as hex.
+      main: '#f00',
+    },
+  },
+});
+
+export default function Login() {
+
+  const [loading, setLoading] = useState(false);
+
   const classes = useStyles();
 
+  const usuarioLogin = (event) => {
+    event.preventDefault();
+    setLoading(true);
+
+
+    const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/proveedor/login';
+
+    const credenciales = {
+      'correoEmpresarial': event.target.correoElectronico.value,
+      'password': event.target.password.value
+    };
+
+    axios.post(endpoint, JSON.stringify(credenciales)).then((response) => {
+      console.log(response);
+      setLoading(false);
+
+      if(response.status == 200 && response.data.message === 'success') {
+        localStorage.setItem('proveedor', JSON.stringify(response.data.data));
+        window.location.href = "/proveedor";
+      }else {
+        alert("Datos de sesión invalidos!!!")
+      }
+
+    }).catch((error)=> {
+      setLoading(false);
+      alert("Datos de sesión invalidos!!!")
+      console.log(error.status);
+    })
+
+  }
+
   return (
-    <Container component="main" maxWidth="xs">
+    <div className="login-container">
+      <Header />
+                        <Loading loading={loading}/>
+      <ThemeProvider theme={theme}>
+    <Container component="main" maxWidth="xs" >
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -59,15 +119,15 @@ export default function LoginProveedor() {
         <Typography component="h1" variant="h5">
           Iniciar Sesión
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form}  onSubmit={usuarioLogin}>
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
             id="email"
-            label="Email Address"
-            name="email"
+            label="Correo Electronico"
+            name="correoElectronico"
             autoComplete="email"
             autoFocus
           />
@@ -77,15 +137,18 @@ export default function LoginProveedor() {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="Contraseña"
             type="password"
             id="password"
             autoComplete="current-password"
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
+                        <Link href="#" variant="body2">
+                ¿Olvidaste tu contraseña?
+              </Link>
           <Button
             type="submit"
             fullWidth
@@ -93,25 +156,19 @@ export default function LoginProveedor() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Iniciar Sesión
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
         </form>
       </div>
+            <NavLink to="/store/proveedor">
+            {"¿No tienes cuenta? Regístrala ahora."}
+                </NavLink>
+            
       <Box mt={8}>
-        <Copyright />
+        {/* <Copyright /> */}
       </Box>
     </Container>
+    </ThemeProvider>
+    </div>
   );
 }
