@@ -32,9 +32,10 @@ const ProductoShelf = (props) => {
   return (
     <Card className={classes.root + " productoShhelf-container"}>
       <CardActionArea>
+        {/* <img src={field.portada} alt="portada" style="max-width: 100%;"/> */}
         <CardMedia
           className={classes.media}
-          image={props.producto.Imagen}
+          image={props.producto.urlImagen}
           title="Contemplative Reptile"
         />
         <CardContent>

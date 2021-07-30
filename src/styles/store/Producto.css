@@ -45,3 +45,35 @@
   cursor: pointer;
   background-image: linear-gradient(-225deg, #ff690f 0%, #ee4719 100%);
 }
+.box-filtros {
+  padding: 10px;
+}
+.select-qty {
+  display: flex;
+  margin-bottom: 10px;
+  align-items: center;
+}
+.precio span {
+  font-family: SofiaProBold;
+  font-size: 18px;
+}
+.select-qty input {
+  width: 72px;
+  height: 45px;
+  border: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: SofiaProBold;
+  font-size: 18px;
+}
+.select-qty i {
+  width: 45px;
+  height: 45px;
+  border: 1px solid gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 5px;
+}

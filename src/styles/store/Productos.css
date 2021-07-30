@@ -1,0 +1,22 @@
+.filter-option {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px;
+  margin-bottom: 3px;
+  border-radius: 5px;
+  background-color: #f5f2fa;
+}
+.filter-option:hover {
+}
+.filter-option input {
+  cursor: pointer;
+  width: 32px;
+  height: 18px;
+}
+.filter-option span {
+  margin-left: 10px;
+  padding-top: 5px;
+  font-family: SofiaProBold;
+  font-size: 16px;
+}

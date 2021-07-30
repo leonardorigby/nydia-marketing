@@ -119,12 +119,12 @@ const Producto = (props) => {
                     <div className="precio field-text">
                         <span>{producto.datosAdicionales}</span>
                     </div>
-                    <div className="precio field-text">
+                    <div className="cantidad field-text">
                         <span>Cantidad: </span>
                     </div>
-                    <div className="precio field-text">
+                    <div className="select-qty field-text">
                         <i className="fas fa-minus"></i>
-                        <input placeholder="Cantidad"/>
+                        <input placeholder="" value="1" />
                         <i className="fas fa-plus"></i>
                     </div>
                     <div className="b-btn">

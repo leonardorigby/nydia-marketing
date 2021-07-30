@@ -168,12 +168,13 @@ const Store = () => {
           <Header carrito={carrito} usuario={usuario} setProducts={setProducts}/>
           {/* <Route  ><Productos agregarProductoAlCarrito={agregarProductoAlCarrito} products={products}/></Route> */}
           {/* <Route  path="/store/producto/:id"  component={Producto} name="leo"></Route> */}
-          <Route
+          {/* <Route
             path="/store/productos/:searchWord"
             render={(props) => (
               <Productos {...props} agregarProductoAlCarrito={agregarProductoAlCarrito} />
             )}
-          />
+          /> */}
+          <Route  path="/store/productos"><Productos /></Route>
           <Route
             path="/store/producto/:id"
             render={(props) => (

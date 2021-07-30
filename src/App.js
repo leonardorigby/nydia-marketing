@@ -63,7 +63,8 @@ const App = () => {
   };
 
   const searchProducts = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
+    window.location.href = "/store/productos/" + event.target.searchWord.value;
     // alert(event.target.search.value);
     // const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/search/';
     // const data =  {

@@ -56,7 +56,7 @@
   color: #fff !important;
   cursor: pointer;
   text-align: center;
-  width: 100%;
+  width: 100% !important;
 }
 .itemShhelf-container .price {
   font-family: SofiaProBold;
