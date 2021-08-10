@@ -96,7 +96,7 @@
     0 1px 3px 0 rgba(63, 63, 68, 0.15)
   );
   border-radius: 2px;
-  width: 60%;
+  width: 100%;
   background-color: #fff;
   text-align: left;
   padding: 10px;
@@ -166,4 +166,23 @@
   align-items: center;
   justify-content: center;
 }
+.app-container .search-message {
+  font-size: 21px;
+  color: #444444;
+}
+.app-container .b-designItems {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px !important;
+}
+.app-container .b-designItems .designButton {
+  font-size: 21px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.app-container .b-designItems .designButton.active {
+  color: #ee4719;
+}
+
 /* search ends */

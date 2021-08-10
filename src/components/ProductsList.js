@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
+
 const useStyles = makeStyles((theme) => ({
     media: {
       height: 140,
@@ -52,9 +53,7 @@ const ProductsList = (props) => {
     // }
 
     const productosLista = props.products.map((producto, index) => 
-        <Grid item xs={12} sm={6} md={3} key={index}>
-            <ProductoShelf agregarProductoAlCarrito={props.agregarProductoAlCarrito} producto={producto}/>
-        </Grid>
+            <ProductoShelf key={index} columnSize="4" agregarProductoAlCarrito={props.agregarProductoAlCarrito} producto={producto} design={props.design}/>
     );
 
     return (

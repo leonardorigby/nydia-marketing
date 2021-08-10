@@ -243,6 +243,7 @@ const CreateItems = (props) => {
 
     const inputFields = props.data.fields.map((field, index) => 
          <Grid item xs={field.xs} sm={field.sm} key={index}>
+           <label>{field.title}</label>
               <TextField
               autoComplete="fname"
               name={field.name}
@@ -251,7 +252,6 @@ const CreateItems = (props) => {
               required
               fullWidth
               id={field.name}
-              label={field.title}
               autoFocus
               onChange={handleImageChange}
               />

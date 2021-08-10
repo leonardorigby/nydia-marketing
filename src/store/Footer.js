@@ -26,8 +26,8 @@ const Footer = () => {
       <Grid container spacing={3}>
         <Grid item xs={3}>
         <div className="b-bar-logo">
-                <NavLink to="/store/productos/">
-                    <img src="/images/under-construction.svg" alt="logo"/>      
+                <NavLink to="/">
+                    <img src="/brick-logo.png" alt="logo"/>      
                 </NavLink>
             </div>
         </Grid>
@@ -36,6 +36,11 @@ const Footer = () => {
             <hr />
             <NavLink to="/proveedor">
                 Soy Proveedor
+            </NavLink>
+            <br />
+            <br />
+            <NavLink to="/admin">
+                Admin
             </NavLink>
         </Grid>
         <Grid item xs={3}>
@@ -98,7 +103,7 @@ const Footer = () => {
       {/* <div className="b-bar-logo">
                 
                 <NavLink to="/store">
-                    <img src="/images/under-construction.svg" alt="logo"/>      
+                    <img src="/brick-logo.png" alt="logo"/>      
                 </NavLink>
             </div>
             <div className="b-bar-options">

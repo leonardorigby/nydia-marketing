@@ -3,7 +3,7 @@ import './App.css';
 import Admin from './admin/';
 import Proveedor from './proveedor/';
 import Store from './store/';
-import Login from './store/Login';
+import Login from './pages/Login';
 import Register from './store/Register';
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { BrowserRouter, Redirect} from "react-router-dom";
@@ -21,8 +21,9 @@ import CreateItems from './components/CreateItems';
 import axios from 'axios';
 import Loading from './components/Loading';
 import Header from './store/Header';
+import DesignButtons from './components/DesignButtons';
 
-
+import { NavLink } from 'react-router-dom';
 
 const App = () => {
 
@@ -30,6 +31,29 @@ const App = () => {
   const [ usuario, setUsuario ] = useState(JSON.parse(localStorage.getItem('usuario')));
   const [ products, setProducts ] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchMessage, setSearchMessage] = useState("Productos mas buscados");
+  const [designStatus, setDesignStatus] = useState("column");
+
+  useEffect(()=>{
+    getProductos();
+    console.log(designStatus);
+  },[]);
+
+  const getProductos = () => {
+    const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/producto/';
+      axios.get(endpoint).then((response) => {
+        setLoading(false);
+        let responseData = response.data.data;
+        console.log(responseData)
+        if(responseData.length > 0 ) {
+            setProducts(responseData)
+            setSearchMessage("Productos mas buscados");
+        }
+    }).catch((error) => {
+        console.log(error);
+        setLoading(false);
+    })
+  }
 
 
   const agregarProductoAlCarrito = (producto) => {
@@ -62,9 +86,9 @@ const App = () => {
 
   };
 
-  const searchProducts = (event) => {
-    event.preventDefault();
-    window.location.href = "/store/productos/" + event.target.searchWord.value;
+  // const searchProducts = (event) => {
+  //   event.preventDefault();
+  //   window.location.href = "/store/productos/" + event.target.searchWord.value;
     // alert(event.target.search.value);
     // const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/search/';
     // const data =  {
@@ -80,7 +104,7 @@ const App = () => {
     //     console.log(error);
     //     setLoading(false);
     // })
-}
+// }
 
   const search = (event) => {
     console.log(event.target.value)
@@ -96,6 +120,10 @@ const App = () => {
         console.log(responseData)
         if(responseData.length > 0 ) {
             setProducts(responseData)
+            setSearchMessage("Resultados");
+        }else {
+          setSearchMessage("Sin resultados...");
+          setProducts([])
         }
     }).catch((error) => {
         console.log(error);
@@ -105,6 +133,12 @@ const App = () => {
       setProducts([]);
     }
 }
+
+  const changeDesignItems = (design) => {
+    
+    setDesignStatus(design);
+    console.log(designStatus)
+  }
 
   return (
     
@@ -117,10 +151,10 @@ const App = () => {
           // window.location.pathname == '/' && <Redirect to="/store/" />
         }
           <Route exact path="/">
-      <Container maxWidth="lg">
-        <Grid container spacing={3}>
+      <Container maxWidth="md">
+        <Grid container spacing={2}>
           <Grid item xs={12} className="b-companyName">
-            <img src="/images/under-construction.svg" alt="logo" className="logo"/>
+            <img src="/brick-logo.png" alt="logo" className="logo"/>
             {/* <h1>Comerzializadora de materiales</h1> */}
           </Grid>
           <Grid item xs={12} className="main-search">
@@ -129,30 +163,41 @@ const App = () => {
               <div className="">
                 <h2 className="title">Buscar ofertas de produtos</h2>
               </div>
-              <form onSubmit={searchProducts}>
+              <form>
                 <div className="b-input">
                   <input onChange={search} name="searchWord" id="input-mainSearch" placeholder="Busca productos en toda la tienda... "/>
                   <i className="fas fa-search"></i>
                 </div>
                 <div className="b-btn">
-                  <button id="btn-mainSearch" type="submit">Buscar</button>
+                  <NavLink to="/store/productos">
+                    <button id="btn-mainSearch" type="submit">Ver Productos</button>
+                  </NavLink>
                 </div>
               </form>
             </div>
           </Grid>
         </Grid>
       </Container>
-      <Container maxWidth="lg">
-      <Grid item xs={12} className="productos">
+      <Container maxWidth="md">
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+        <h2 className="search-message">{searchMessage}</h2>
+        </Grid>
+        <Grid item xs={6} className="b-designItems">
+          <DesignButtons designStatus={designStatus} changeDesignItems={(design) => setDesignStatus(design)} />
+        </Grid>
+      </Grid>
+
         {
-          products.length > 0 && 
+          products.length > 0 &&
+          <Grid item xs={12} className="productos">
           <div>
-            <h2>Resultados</h2>
             <hr />
           </div>
+            <ProductsList agregarProductoAlCarrito={agregarProductoAlCarrito} products={products} design={designStatus}/>
+          </Grid>
+
         }
-        <ProductsList agregarProductoAlCarrito={agregarProductoAlCarrito} products={products}/>
-        </Grid>
       </Container>
       
       </Route>
@@ -162,9 +207,9 @@ const App = () => {
           <RouteGuard path="/admin/" component={Admin}  />
           <RouteGuardProveedor path="/proveedor/" component={Proveedor}  />
 
-          <Route  path="/login/admin-login"><LoginAdmin /></Route>
+          <Route  path="/login/"><Login /></Route>
 
-          <Route  path="/login/proveedor-login"><LoginProveedor /></Route>
+          {/* <Route  path="/login/proveedor-login"><LoginProveedor /></Route> */}
           
       </BrowserRouter>
     </div>

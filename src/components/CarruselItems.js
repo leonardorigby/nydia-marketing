@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import ItemShelf from './ItemShelf';
+import CarruselItem from './CarruselItem';
 
 
 
@@ -22,7 +22,7 @@ const CarruselItems = (props) => {
 
       const itemsList = items.map((item) =>
       <div className="swiper-slide" key={item.id}>
-        <ItemShelf agregarProductoAlCarrito={props.agregarProductoAlCarrito} producto={item}/>
+        <CarruselItem agregarProductoAlCarrito={props.agregarProductoAlCarrito} producto={item}/>
       </div>
       );
 

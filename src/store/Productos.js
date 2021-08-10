@@ -5,10 +5,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import TableItems from '../components/TableItems';
 import axios from 'axios';
 import Loading from '../components/Loading';
-import ItemShelf from '../components/ItemShelf';
+// import ItemShelf from '../components/ItemShelf';
+import ProductoShelf from '../components/ItemShelf';
 import Container from '@material-ui/core/Container';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import DesignButtons from '../components/DesignButtons';
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -28,6 +30,7 @@ const Productos = (props) => {
 
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [designStatus, setDesignStatus] = useState("column");
 
     const classes = useStyles();
 
@@ -122,10 +125,11 @@ const Productos = (props) => {
     // }
 
     const productosLista = productos.map((producto, index) => 
-        <Grid item xs={12} sm={6} md={3} key={index}>
-          {/* {producto.id} */}
-            <ItemShelf agregarProductoAlCarrito={props.agregarProductoAlCarrito} producto={producto}/>
-        </Grid>
+        // <Grid item xs={12} sm={6} md={3} key={index}>
+        //   {/* {producto.id} */}
+        //     <ItemShelf agregarProductoAlCarrito={props.agregarProductoAlCarrito} producto={producto}/>
+        // </Grid>
+        <ProductoShelf key={index} columnSize="4" agregarProductoAlCarrito={props.agregarProductoAlCarrito} producto={producto} design={designStatus}/>
     );
 
     return (
@@ -173,6 +177,12 @@ const Productos = (props) => {
           </Grid>
         <Grid item xs={12} sm={9} md={9} >
         <Grid container spacing={3}>
+        <Grid item xs={6} className="">
+          <h3 className="">Productos</h3>
+        </Grid>
+        <Grid item xs={6} className="b-designItems">
+          <DesignButtons designStatus={designStatus} changeDesignItems={(design) => setDesignStatus(design)} />
+        </Grid>
         {productosLista}
 
         </Grid>

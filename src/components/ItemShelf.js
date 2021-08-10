@@ -8,6 +8,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import '../styles/components/ItemShelf.css'
 
 const useStyles = makeStyles((theme) => ({
@@ -29,21 +30,26 @@ const ItemShelf = (props) => {
     const classes = useStyles();
 
   return (
+    <Grid item xs={12} sm={6} md={props.columnSize}  className={"product-item " + (props.design)}>
     <Card className={classes.root + " itemShhelf-container"}>
-      <CardActionArea>
+      <div className="b-image">
+      <NavLink to={"/store/producto/" + (props.producto.id)}>
         <CardMedia
           className={classes.media}
           image={props.producto.Imagen}
           title="Contemplative Reptile"
         />
+        </NavLink>
+      </div>
+      <div className="b-info">
+      <CardActionArea>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2" align="center">
-            {props.producto.nombre}
+          <Typography gutterBottom variant="h5" component="h2" align="center" className="name">
+            {props.producto.Nombre}
           </Typography>
           <Typography variant="body2"  component="p">
           <strong className="price">$ {props.producto.Precio} MXN</strong>
           </Typography>
-          
         </CardContent>
       </CardActionArea>
       <CardActions>
@@ -56,7 +62,10 @@ const ItemShelf = (props) => {
         </NavLink>
         {/* </Button> */}
       </CardActions>
+      </div>
     </Card>
+    </Grid>
+
   );
 }
 export default ItemShelf;

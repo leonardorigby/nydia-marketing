@@ -20,7 +20,7 @@ const Header = (props) => {
                     <i className="fas fa-bars menu-icon pointer" onClick={() => props.toggleSidebar() }></i>
                 </div>
                 <NavLink to="/proveedor">
-                    <img src="/images/under-construction.svg" alt="logo"/>      
+                    <img src="/brick-logo.png" alt="logo"/>      
                 </NavLink>
                 {/* <div className="b-menu-link desktop pointer">
                     <i className="fas fa-bars pointer"></i>

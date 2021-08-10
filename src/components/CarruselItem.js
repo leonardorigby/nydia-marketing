@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import { NavLink } from 'react-router-dom';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import '../styles/components/ProductoShelf.css'
+import Grid from '@material-ui/core/Grid';
+import '../styles/components/ItemShelf.css'
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -23,32 +25,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ProductoShelf = (props) => {
+const CarruselItem = (props) => {
     // const [ producto ] = useState({"id": 3, name: "Producto"});
-
-
     const classes = useStyles();
 
   return (
-    <Card className={classes.root + " productoShhelf-container"}>
-      <CardActionArea>
-        {/* <img src={field.portada} alt="portada" style="max-width: 100%;"/> */}
+    <Card className={classes.root + " itemShhelf-container"}>
+      <NavLink to={"/store/producto/" + (props.producto.id)}>
         <CardMedia
           className={classes.media}
-          image={props.producto.urlImagen}
+          image={props.producto.Imagen}
           title="Contemplative Reptile"
         />
+        </NavLink>
+      <CardActionArea>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2" align="center">
-            {props.producto}
-          </Typography>
-          <Typography gutterBottom variant="h5" component="h2">
-            
-              <span id="type">Toneladas</span>
+          <Typography gutterBottom variant="h5" component="h2" align="center" className="name">
+            {props.producto.Nombre}
           </Typography>
           <Typography variant="body2"  component="p">
-          <s id="priceOld">$ {props.producto.precio} MXN</s>
-          <strong>$ {props.producto.precio} MXN</strong>
+          <strong className="price">$ {props.producto.Precio} MXN</strong>
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -57,12 +53,13 @@ const ProductoShelf = (props) => {
           Share
         </Button> */}
         {/* <Button size="small" color="primary"> */}
-            <button size="small" color="primary" className="btn" onClick={() => props.agregarProductoAlCarrito(props.producto)}>Agregar al carrito</button>
-            <div><input type="number" size="small" className=" form-control" placeholder="1" /></div>
-
+        <NavLink to={"/store/producto/" + (props.producto.id)} className="product-link">
+            <button color="primary" className="btn add-cartBtn">Ver Producto</button>
+        </NavLink>
         {/* </Button> */}
       </CardActions>
     </Card>
+
   );
 }
-export default ProductoShelf;
+export default CarruselItem;

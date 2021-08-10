@@ -12,7 +12,7 @@ const Header = (props) => {
                     <i className="fas fa-bars pointer"></i>
                 </div>
                 <NavLink to="/store/productos/">
-                    <img src="/images/under-construction.svg" alt="logo"/>      
+                    <img src="/brick-logo.png" alt="logo"/>      
                 </NavLink>
                 
             </div>
