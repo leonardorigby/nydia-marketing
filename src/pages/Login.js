@@ -26,12 +26,18 @@ export default function Login() {
     event.preventDefault();
     setLoading(true);
     var endpoint = "";
+    var admin=false;
+    var user=false;
+    var proveedor=false;
     if(event.target.type.value=="administrador"){
-      endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/usuario/login';
+      endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/usuario/login';//admin
+      admin=true;
     }else if(event.target.type.value=="cliente"){
-      endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/cliente/login';
+      endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/cliente/login';//usario
+      user=true;
     }else if(event.target.type.value=="proveedor"){
-      endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/proveedor/login';
+      endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/proveedor/login';//provedor
+      proveedor=true;
     }
 
     const credenciales = {
@@ -44,8 +50,16 @@ export default function Login() {
       setLoading(false);
 
       if(response.status == 200 && response.data.message === 'success') {
+        if(usuario==true){
         localStorage.setItem('usuario', JSON.stringify(response.data.data));
         window.location.href = "/store/productos";
+      }else if(admin==true){
+        localStorage.setItem('admin', JSON.stringify(response.data.data));
+        window.location.href = "/admin";
+      }else if(proveedor==true){
+        localStorage.setItem('proveedor', JSON.stringify(response.data.data));
+        window.location.href = "/proveedor";
+      }
       }else {
         alert("Datos de sesión invalidos!!!")
       }
