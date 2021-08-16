@@ -34,22 +34,22 @@ const Footer = () => {
         <Grid item xs={3}>
         <h6>¿Cómo podemos ayudarte?</h6>
             <hr />
-            <NavLink to="/proveedor">
+            <NavLink to="/store/login">
                 Soy Proveedor
             </NavLink>
             <br />
             <br />
-            <NavLink to="/admin">
+            <NavLink to="/store/login">
                 Admin
             </NavLink>
         </Grid>
         <Grid item xs={3}>
         <h6>Contáctanos</h6>
             <hr />
-            <NavLink to="/store/correo">
+            <NavLink to="/store/error">
                 hola@materiales.com
             </NavLink><br />
-            <NavLink to="/store/phone">
+            <NavLink to="/store/error">
                 333 333 3333
             </NavLink>
         </Grid>
@@ -64,22 +64,22 @@ const Footer = () => {
             <Container maxWidth="md" >
             <Grid container spacing={3}>
             <Grid item xs={3}>
-                <NavLink to="/store/phone">
+                <NavLink to="/store/error">
                     Términos y condiciones
                 </NavLink>
             </Grid>
             <Grid item xs={3}>
-                <NavLink to="/store/phone">
+                <NavLink to="/store/error">
                 Aviso de privacidad
                 </NavLink>
             </Grid>
             <Grid item xs={3}>
-                <NavLink to="/store/phone">
+                <NavLink to="/store/error">
                 Condiciones de promociones
                 </NavLink>
             </Grid>
             <Grid item xs={3}>
-                <NavLink to="/store/phone">
+                <NavLink to="/store/error">
                 Condiciones de envíos
                 </NavLink>
             </Grid>

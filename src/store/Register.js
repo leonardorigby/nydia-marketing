@@ -17,7 +17,7 @@ import { ThemeProvider } from '@material-ui/styles';
 import { NavLink } from 'react-router-dom';
 
 
-import '../styles/store/Login.css';
+import '../styles/store/Login.scss';
 
 // function Copyright() {
 //   return (

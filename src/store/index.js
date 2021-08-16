@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect} from "react-router-dom";
 import ProductoShelf from '../components/ProductoShelf';
 import Login from '../pages/Login';
+import PageError from '../pages/PageError';
 import Registro from '../pages/Registro';
 import Header from './Header';
 import Footer from './Footer';
@@ -249,6 +250,7 @@ const Store = () => {
             )}
           />
           <Route  path="/store/login/"><Login /></Route>
+          <Route  path="/store/error/"><PageError /></Route>
           <Route  path="/store/registro/"><Registro /></Route>
           <Route  path="/store/search/"><Buscador /></Route>
           <Route exact path="/store/registrar/"><CreateItems data={registroCliente} /></Route>
