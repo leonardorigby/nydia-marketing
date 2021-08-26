@@ -209,7 +209,7 @@ const App = () => {
 
           <Route  path="/login/"><Login /></Route>
 
-          {/* <Route  path="/login/proveedor-login"><LoginProveedor /></Route> */}
+         <Route  path="/login/"><LoginProveedor /></Route> 
           
       </BrowserRouter>
     </div>
