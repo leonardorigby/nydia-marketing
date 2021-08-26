@@ -225,8 +225,30 @@ h2 {
   font-size: 26px;
   text-align: center;
 }
-
-label {
+#secondCol{
+  transform: translate(110%, -143.5%);
+  display: block;
+  width: $inputW;
+  
+  text-align: center;
+  span {
+    font-size: 12px;
+    color: #cfcfcf;
+    text-transform: uppercase;
+  }
+}
+#firstCol{
+  display: block;
+  width: $inputW;
+  margin: 2px 5px 0;
+  text-align: center;
+  span {
+    font-size: 12px;
+    color: #cfcfcf;
+    text-transform: uppercase;
+  }
+}
+label{
   display: block;
   width: $inputW;
   margin: 2px auto 0;

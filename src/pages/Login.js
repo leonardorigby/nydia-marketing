@@ -18,30 +18,30 @@ export default function Login() {
     setLoading(true);
 
   }
-  const usuarioRegister= (event) => {
-    event.preventDefault();
-    setLoading(true);
+  const showInputs = () =>{
+
   }
+ 
   const usuarioLogin = (event) => {
     event.preventDefault();
     setLoading(true);
     var endpoint = "";
     var admin=false;
-    var user=false;
+    var usuario=false;
     var proveedor=false;
     if(event.target.type.value=="administrador"){
-      endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/usuario/login';//admin
+      endpoint = '';//admin
       admin=true;
     }else if(event.target.type.value=="cliente"){
-      endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/cliente/login';//usario
-      user=true;
+      endpoint = '';//usario
+      usuario=true;
     }else if(event.target.type.value=="proveedor"){
-      endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/proveedor/login';//provedor
+      endpoint = 'https://backendbrick.cuartelvr.com/materiales/v1/api/proveedor/login';//provedor
       proveedor=true;
     }
 
     const credenciales = {
-      'correoEmpresarial': event.target.correoElectronico.value,
+      'correoElectronico': event.target.correoElectronico.value,
       'password': event.target.password.value
     };
 
@@ -55,10 +55,10 @@ export default function Login() {
         window.location.href = "/store/productos";
       }else if(admin==true){
         localStorage.setItem('admin', JSON.stringify(response.data.data));
-        window.location.href = "/admin";
+        window.location.href = "/admin/";
       }else if(proveedor==true){
         localStorage.setItem('proveedor', JSON.stringify(response.data.data));
-        window.location.href = "/proveedor";
+        window.location.href = "/proveedor/";
       }
       }else {
         alert("Datos de sesión invalidos!!!")
@@ -71,7 +71,69 @@ export default function Login() {
     })
 
   }
+  const usuarioRegister = (event) => {
+    event.preventDefault();
+    setLoading(true);
+    var endpoint = "";
+    var admin=false;
+    var usuario=false;
+    var proveedor=false;
+   if(event.target.password.value==event.target.passwordConfirmacion.value){
 
+    if(event.target.type.value=="administrador"){
+      endpoint = '';//admin
+      admin=true;
+    }else if(event.target.type.value=="cliente"){
+      endpoint = '';//usario
+      usuario=true;
+    }else if(event.target.type.value=="proveedor"){
+      endpoint = 'https://backendbrick.cuartelvr.com/materiales/v1/api/proveedor';//provedor
+      proveedor=true;
+    }
+
+    const credenciales = {
+      "razonSocial":event.target.razonSocial.value,
+      "correoElectronico":event.target.correoElectronico.value,
+      "password":event.target.password.value,
+      "urlImagen":event.target.urlImagen.value,
+      "cargoEmpresarial":event.target.cargo.value,
+      "telefono": event.target.telefono.value,
+      "rfc": event.target.rfc.value,
+      "giroEmpresa": event.target.giroEmpresa.value,
+      "promedioVentasMes": event.target.promedioVentasMes.value,
+      "direccionSucursal": event.target.direccionSucursal.value
+   }
+   console.log(credenciales);
+   console.log(endpoint);
+   console.log(proveedor);
+
+   axios.post(endpoint, JSON.stringify(credenciales)).then((response) => {
+    console.log(response);
+    setLoading(false);
+
+    if(response.status == 201 && response.statusText === 'Created') {
+      if(usuario==true){
+      localStorage.setItem('usuario', JSON.stringify(response.data.data));
+      window.location.href = "/store/productos";
+    }else if(admin==true){
+      localStorage.setItem('admin', JSON.stringify(response.data.data));
+      window.location.href = "/admin";
+    }else if(proveedor==true){
+      localStorage.setItem('proveedor', JSON.stringify(response.data.data));
+      window.location.href = "/proveedor";
+    }
+    }else {
+      alert("Datos de sesión invalidos!!!")
+    }
+
+  })
+}else{
+  alert("Las contraceñas No coinciden")
+}
+
+}
+
+  
 
 
   return (
@@ -88,11 +150,11 @@ export default function Login() {
     <h2>¡Bienvenido de Nuevo!</h2>
     <label>
       <span>Correo Electronico</span>
-      <input type="email" name="correoElectronico" />
+      <input type="email" name="correoElectronico" required/>
     </label>
     <label>
     <span>Soy :</span>
-    <select name="type" id="type">
+    <select name="type" id="type" required>
   <option value="" disabled selected >Seleccione un Rol</option>
   <option value="proveedor">Proveedor</option>
   <option value="cliente" >Cliente</option>
@@ -101,7 +163,7 @@ export default function Login() {
     </label>
     <label>
       <span>Contraseña</span>
-      <input type="password" name="password"/>
+      <input type="password" name="password" required/>
     </label>
     <p class="forgot-pass">¿Olvidaste tu Contraseña?</p>
     <button type="submit" class="submit">Iniciar Sesión</button>
@@ -123,29 +185,56 @@ export default function Login() {
     </div>
     <form class="form sign-up" onSubmit={usuarioRegister}>
       <h2>¡Es hora de descubrir nuevos productos!</h2>
-      <label>
+      <div id="firstCol">
+      <span>Soy : *</span>
+          <select name="type" id="type" required onChange={showInputs}>
+          <option value="" disabled selected >Seleccione un Rol</option>
+          <option value="proveedor">Proveedor</option>
+          <option value="cliente" >Cliente</option>
+          <option value="administrador">Administrador</option>
+        </select>
+
         <span>Razon Social</span>
-        <input type="text" />
+        <input type="text" name="razonSocial"  required/>
+
           <span>RFC</span>
-        <input type="text" />
+        <input type="text"  name="rfc"required/>
       
         <span>No Teléfono</span>
-        <input type="text" />
+        <input type="text"  name="telefono"required/>
     
         <span>Correo electronico</span>
-        <input type="email" />
+        <input type="email"  name="correoElectronico"required/>
       
         <span>Cargo en la empresa</span>
-        <input type="text" />
+        <input type="text"  name="cargo"required/>
       
         <span>Contraseña</span>
-        <input type="password" />
+        <input type="password"  name="password"required/>
 
         <span>Confirmación de Contraseña</span>
-        <input type="password" />
-      </label>
-      <button type="button" class="files" data-toggle="modal" data-target="#modal-documentos">Documentación</button>
-      <button type="submit" class="submit">Registrarse</button>
+        <input type="password"  name="passwordConfirmacion"required/>
+
+      </div>
+      <div id="secondCol">
+        <span>Imagen de Perfil</span>
+        <input type="file" name="urlImagen"  required/>
+
+        <span>Giro Empresarial</span>
+        <input type="text"  name="giroEmpresa" required/>
+      
+        <span>Promedio de Ventas / Contrucciónes por Mes</span>
+        <input type="text"  name="promedioVentasMes" required/>
+    
+        <span>Dirección de la Sucursal / de Entrega </span>
+        <input type="text"  name="direccionSucursal" required/>
+      
+
+        <button type="submit" class="submit">Registrarse</button>
+
+     
+      </div>
+
     </form>
   </div>
 </div>
