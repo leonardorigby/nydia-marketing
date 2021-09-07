@@ -105,7 +105,7 @@ const Producto = (props) => {
                 <Grid container spacing={3}>
           <Grid item xs={6}>
               <div className="b-image">
-                <img src={producto.urlImagen} className="img"/>
+                <img src={producto.urlImagenPrincipal} className="img"/>
               </div>
           </Grid>
           <Grid item xs={6}>

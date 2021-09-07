@@ -36,8 +36,8 @@ const ItemShelf = (props) => {
       <NavLink to={"/store/producto/" + (props.producto.id)}>
         <CardMedia
           className={classes.media}
-          image={props.producto.Imagen}
-          title="Contemplative Reptile"
+          image={"https://backendbrick.cuartelvr.com/materiales/images/producto/" + props.producto.id+ "/1.png"}
+          title={props.producto.nombre}
         />
         </NavLink>
       </div>
@@ -45,10 +45,10 @@ const ItemShelf = (props) => {
       <CardActionArea>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2" align="center" className="name">
-            {props.producto.Nombre}
+            {props.producto.nombre}
           </Typography>
           <Typography variant="body2"  component="p">
-          <strong className="price">$ {props.producto.Precio} MXN</strong>
+          <strong className="price">$ {props.producto.precio} MXN</strong>
           </Typography>
         </CardContent>
       </CardActionArea>

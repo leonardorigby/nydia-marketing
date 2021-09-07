@@ -263,6 +263,11 @@ const TableItems = (props) => {
     setDense(event.target.checked);
   };
 
+  const editarProducto = (productoId) => {
+    // event.preventDefault();
+    window.location.href = '/proveedor/productos/' + productoId;
+  }
+
   const isSelected = (name) => selected.indexOf(name) !== -1;
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, props.data.length - page * rowsPerPage);
@@ -296,7 +301,7 @@ const TableItems = (props) => {
 
                   let items = dataKeys.map((service, index) =>
 
-                  service == "Imagen"
+                  service == "urlImagenPrincipal"
                   ? <TableCell align="left" key={index}>
                       <Avatar className={classes.avatar} src={row[service]} ></Avatar>
                     </TableCell>
@@ -327,8 +332,8 @@ const TableItems = (props) => {
                             </TableCell> */}
 
                             {items}
-                            <TableCell align="left"><i className="fas fa-edit" onClick={(event) => console.log(row.id)}></i></TableCell>
-                            <TableCell align="left"><i className="fas fa-trash" onClick={(event) => console.log(row.id)}></i></TableCell>  
+                            <TableCell align="left"><i className="fas fa-edit" onClick={(event) => editarProducto(row.id)}></i></TableCell>
+                            {/* <TableCell align="left"><i className="fas fa-trash" onClick={(event) => console.log(row.id)}></i></TableCell>   */}
                         {/* <TableCell align="center">{value}</TableCell> */}
                             {/* <TableCell component="th" id={labelId} scope="row" padding="none">{keyName}</TableCell>
                             <TableCell align="center">{row.empresaRazonSocial}</TableCell>

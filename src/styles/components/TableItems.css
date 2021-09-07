@@ -16,3 +16,9 @@ td.MuiTableCell-root img {
 label.MuiFormControlLabel-root {
   display: none;
 }
+
+.fa-edit {
+  color: var(--primerColor);
+  font-size: 18px;
+  cursor: pointer;
+}

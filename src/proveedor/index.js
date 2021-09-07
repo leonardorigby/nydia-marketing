@@ -4,7 +4,8 @@ import Header from './Header';
 import SideBar from './SideBar';
 import Home from './Home';
 import Productos from './Productos';
-import CreateItems from '../components/CreateItems';
+import AgregarProducto from './AgregarProducto';
+import EditarProducto from './EditarProducto';
 
 import '../styles/proveedor/Proveedor.css'
 import Account from './Account';
@@ -37,6 +38,7 @@ const Proveedor = () => {
     }
 
 
+
     return(
         <div className={"proveedor-container " + (sidebarOpen ? 'open' : '' )}>
             <Header proveedor={proveedor} toggleSidebar={() => setToggleSidebar(!sidebarOpen) }/>
@@ -45,7 +47,13 @@ const Proveedor = () => {
             <Route exact path="/proveedor"><Home /></Route>
             <Route exact path="/proveedor/cuenta"><Account /></Route>
             <Route  exact path="/proveedor/productos/"><Productos proveedor={proveedor} nuevoRegistro={nuevoRegistro}/></Route>
-            <Route exact path="/proveedor/registrar/"><CreateItems data={registroData} /></Route>
+            <Route exact path="/proveedor/registrar/"><AgregarProducto  /></Route>
+            <Route
+            path="/proveedor/productos/:id"
+            render={(props) => (
+              <EditarProducto {...props}  />
+            )}
+          />
 
         </div>
     );

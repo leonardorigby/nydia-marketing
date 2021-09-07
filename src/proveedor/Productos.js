@@ -76,9 +76,9 @@ const Productos = (props) => {
 
     const getProductos = () => {
         setLoading(true);
-        const endpoint = 'https://backendbrick.cuartelvr.com/materiales/v1/api/producto/' + proveedor.id + '/productos/';
+        const endpoint = 'https://backendbrick.cuartelvr.com/materiales/v1/api/productos/proveedor/' + proveedor.id;
 
-        axios.post(endpoint, { headers: {"Authorization" : `Bearer ${props.proveedor.jwt}`} }).then((response) =>{
+        axios.get(endpoint, { headers: {"Authorization" : `Bearer ${props.proveedor.jwt}`} }).then((response) =>{
             console.log(response)
             setLoading(false);
             let responseData = response.data.data;
@@ -104,14 +104,14 @@ const Productos = (props) => {
                 "disablePadding": true, 
                 "label": 'edit'
             };
-            let cellDelete = { 
-                "id": 'delete', 
-                "numeric": false, 
-                "disablePadding": true, 
-                "label": 'delete'
-            };
+            // let cellDelete = { 
+            //     "id": 'delete', 
+            //     "numeric": false, 
+            //     "disablePadding": true, 
+            //     "label": 'delete'
+            // };
             objectKeys.push(cellEdit)
-            objectKeys.push(cellDelete)
+            // objectKeys.push(cellDelete)
             
             setHeadCells(
                 objectKeys

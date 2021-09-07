@@ -35,8 +35,8 @@ const ProductoShelf = (props) => {
         {/* <img src={field.portada} alt="portada" style="max-width: 100%;"/> */}
         <CardMedia
           className={classes.media}
-          image={props.producto.urlImagen}
-          title="Contemplative Reptile"
+          image={"https://backendbrick.cuartelvr.com/materiales/images/producto/" + props.producto.id+ "/1.png"}
+          title={props.producto.nombre}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2" align="center">
