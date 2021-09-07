@@ -51,7 +51,7 @@ const Producto = (props) => {
 
     const getProductsRelated = () => {
         setLoading(true);
-        const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/producto/';
+        const endpoint = 'https://backendbrick.cuartelvr.com/materiales/v1/api/producto/';
 
         axios.get(endpoint).then((response) => {
             setLoading(false);
@@ -73,7 +73,7 @@ const Producto = (props) => {
         setLoading(true);
         const productoId = props.match.params.id;
         console.log(productoId)
-        const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/producto/' + productoId;
+        const endpoint = 'https://backendbrick.cuartelvr.com/materiales/v1/api/producto/' + productoId;
 
         axios.get(endpoint).then((response) =>{
             console.log(response);

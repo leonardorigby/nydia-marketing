@@ -11,6 +11,7 @@ import ProductsList from '../components/ProductsList';
 import Producto from './Producto';
 import Buscador from '../components/Buscador';
 import CreateItems from '../components/CreateItems';
+import SeguimientoRegistro from '../pages/SeguimientoRegistro';
 
 
 
@@ -251,10 +252,12 @@ const Store = () => {
           />
           <Route  path="/store/login/"><Login /></Route>
           <Route  path="/store/error/"><PageError /></Route>
-          <Route  path="/store/registro/"><Registro /></Route>
           <Route  path="/store/search/"><Buscador /></Route>
-          <Route exact path="/store/registrar/"><CreateItems data={registroCliente} /></Route>
+          <Route  path="/store/complete-Registro"><SeguimientoRegistro /></Route>
+         { /*<Route exact path="/store/registrar/"><CreateItems data={registroCliente} /></Route>
           <Route exact path="/store/proveedor/"><CreateItems data={registroProveedor} /></Route>
+
+            */}
           <Footer />
         </div>
     );

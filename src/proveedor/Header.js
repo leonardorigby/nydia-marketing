@@ -9,7 +9,7 @@ const Header = (props) => {
     const proveedorLogOut = () => {
         localStorage.clear();
         if(localStorage.getItem('proveedor') == null ) {
-            window.location.href = "/proveedor-login";
+            window.location.href = "/login";
         }
     }
 

@@ -9,7 +9,7 @@ const Header = (props) => {
     const adminLogOut = () => {
         localStorage.clear();
         if(localStorage.getItem('admin') == null ) {
-            window.location.href = "/admin-login";
+            window.location.href = "/login";
         }
     }
 

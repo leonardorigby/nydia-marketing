@@ -8,7 +8,7 @@ const RouteGuard = ({ component: Component, ...rest }) => (
 
             ? <Component {...props} />
 
-            : <Redirect to='/login/proveedor-login' />
+            : <Redirect to='/login' />
 
     )} />
 )

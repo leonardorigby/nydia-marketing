@@ -13,7 +13,7 @@ const Productos = (props) => {
             'icon': 'user-circle',
             'tabla': 'productos',
             'redirect': "/admin/productos",
-            'endpoint': 'https://webdevelopersgdl.com/comercializadora-material/v1/api/producto/',
+            'endpoint': 'https://backendbrick.cuartelvr.com/materiales/v1/api/producto/',
             'fields': [
                     
                 {   
@@ -24,25 +24,11 @@ const Productos = (props) => {
                     'sm': 12
                 },   
                 {   
-                    'title': "Material",
-                    'name': "materialId",
-                    'type': 'text',
-                    'xs': 12,
-                    'sm': 6
-                },
-                {   
                     'title': "Imagen",
-                    'name': "urlImagen",
+                    'name': "urlImagenPrincipal",
                     'type': 'file',
                     'xs': 12,
                     'sm': 6
-                },
-                {   
-                    'title': "Datos Adicionales",
-                    'name': "datosAdicionales",
-                    'type': 'text',
-                    'xs': 12,
-                    'sm': 12
                 },
                 {   
                     'title': "Proveedor",
@@ -60,7 +46,7 @@ const Productos = (props) => {
                 },
                 {   
                     'title': "Stock",
-                    'name': "stock",
+                    'name': "cantidad",
                     'type': 'number',
                     'xs': 12,
                     'sm': 6
@@ -88,7 +74,7 @@ const Productos = (props) => {
 
     const getProductos = () => {
         setLoading(true);
-        const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/producto/';
+        const endpoint = 'https://backendbrick.cuartelvr.com/materiales/v1/api/producto/';
 
         axios.get(endpoint, { headers: {"Authorization" : `Bearer ${props.admin.jwt}`} }).then((response) =>{
             setLoading(false);

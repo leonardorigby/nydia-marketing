@@ -4,23 +4,17 @@ import Admin from './admin/';
 import Proveedor from './proveedor/';
 import Store from './store/';
 import Login from './pages/Login';
-import Register from './store/Register';
-import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { BrowserRouter, Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter} from "react-router-dom";
 import RouteGuard from './route-guard';
 import RouteGuardProveedor from './route-guard-proveedor';
 
-import LoginAdmin from './pages/LoginAdmin';
-import LoginProveedor from './pages/LoginProveedor';
 
-import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import ProductsList from './components/ProductsList';
-import CreateItems from './components/CreateItems';
 import axios from 'axios';
 import Loading from './components/Loading';
-import Header from './store/Header';
 import DesignButtons from './components/DesignButtons';
 
 import { NavLink } from 'react-router-dom';
@@ -40,7 +34,7 @@ const App = () => {
   },[]);
 
   const getProductos = () => {
-    const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/producto/';
+    const endpoint = 'https://backendbrick.cuartelvr.com/materiales/v1/api/producto/';
       axios.get(endpoint).then((response) => {
         setLoading(false);
         let responseData = response.data.data;
@@ -153,6 +147,9 @@ const App = () => {
           <Route exact path="/">
       <Container maxWidth="md">
         <Grid container spacing={2}>
+        <Grid item xs={12} className="b-linkLogin">
+            <a href="/login" >Iniciar Sesión <i class="fas fa-user"></i></a>
+          </Grid>
           <Grid item xs={12} className="b-companyName">
             <img src="/brick-logo.png" alt="logo" className="logo"/>
             {/* <h1>Comerzializadora de materiales</h1> */}

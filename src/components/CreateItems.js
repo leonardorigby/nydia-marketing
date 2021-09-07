@@ -224,7 +224,9 @@ const CreateItems = (props) => {
         data['proveedorId'] = proveedor.id;
       }
       console.log(data);
+      //data.push({"totalImages":1});
         const endpoint = props.data.endpoint;
+        console.log(props.data)
         axios.post(endpoint, JSON.stringify(data)).then((response) => {
         console.log(response);
         setLoading(false);

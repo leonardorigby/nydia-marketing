@@ -42,7 +42,7 @@ const Productos = (props) => {
     }, []);
 
     const getProductos = () => {
-      const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/producto/';
+      const endpoint = 'https://backendbrick.cuartelvr.com/materiales/v1/api/producto/';
         axios.get(endpoint).then((response) => {
           setLoading(false);
           let responseData = response.data.data;

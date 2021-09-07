@@ -161,6 +161,10 @@
   width: 210px;
   height: 120px;
 }
+.b-linkLogin a{
+  color: black;
+  margin-left: 90%;
+}
 .b-companyName {
   display: flex;
   align-items: center;

@@ -14,7 +14,8 @@ const Productos = (props) => {
             'name': 'Producto',
             'icon': 'user-circle',
             'tabla': 'productos',
-            'endpoint': 'https://webdevelopersgdl.com/comercializadora-material/v1/api/producto/',
+            'redirect': "/admin/productos",
+            'endpoint': 'https://backendbrick.cuartelvr.com/materiales/v1/api/producto/',
             'fields': [
                     
                 {   
@@ -25,25 +26,18 @@ const Productos = (props) => {
                     'sm': 12
                 },   
                 {   
-                    'title': "Material",
-                    'name': "materialId",
-                    'type': 'text',
-                    'xs': 12,
-                    'sm': 6
-                },
-                {   
                     'title': "Imagen",
-                    'name': "urlImagen",
+                    'name': "urlImagenPrincipal",
                     'type': 'file',
                     'xs': 12,
                     'sm': 6
                 },
                 {   
-                    'title': "Datos Adicionales",
-                    'name': "datosAdicionales",
-                    'type': 'text',
+                    'title': "Proveedor",
+                    'name': "proveedorId",
+                    'type': 'number',
                     'xs': 12,
-                    'sm': 12
+                    'sm': 6
                 },
                 {   
                     'title': "Categoria",
@@ -54,7 +48,7 @@ const Productos = (props) => {
                 },
                 {   
                     'title': "Stock",
-                    'name': "stock",
+                    'name': "cantidad",
                     'type': 'number',
                     'xs': 12,
                     'sm': 6
@@ -82,7 +76,7 @@ const Productos = (props) => {
 
     const getProductos = () => {
         setLoading(true);
-        const endpoint = 'https://webdevelopersgdl.com/comercializadora-material/v1/api/proveedor/' + proveedor.id + '/productos/';
+        const endpoint = 'https://backendbrick.cuartelvr.com/materiales/v1/api/producto/' + proveedor.id + '/productos/';
 
         axios.post(endpoint, { headers: {"Authorization" : `Bearer ${props.proveedor.jwt}`} }).then((response) =>{
             console.log(response)
