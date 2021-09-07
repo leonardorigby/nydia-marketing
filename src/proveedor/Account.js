@@ -41,11 +41,20 @@ const Account = () => {
 </div>
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={12}>
-                    <h1>Mis Productos más Vendidos</h1>
+                    <h1>Un sub tema</h1>
                     <div className="card border-dark mb-3" >
-  <div className="card-header">Header</div>
+  <div className="card-header">Title 1</div>
   <div className="card-body text-dark">
     <h5 className="card-title">Dark card title</h5>
+    <small className="text-muted">sub title</small>
+    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+  </div>
+</div>
+<div className="card border-dark mb-3" >
+  <div className="card-header">Title 2</div>
+  <div className="card-body text-dark">
+    <h5 className="card-title">Dark card title</h5>
+    <small className="text-muted">sub title</small>
     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
   </div>
 </div>
